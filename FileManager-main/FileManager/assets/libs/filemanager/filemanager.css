@@ -1,0 +1,390 @@
+:root {
+	--dir-level-step: 7px;
+	--left-col-width: 250px;
+	--popup-zindex: 2000;
+	--popup-margin-y: 30px;
+}
+
+.filemanager__backdrop.popup {
+	background-color: rgba(110, 110, 110, 0.15);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: var(--popup-zindex);
+	display: none;
+}
+	.filemanager__backdrop.popup.show {
+		display: block;
+	}
+
+	.filemanager__backdrop.popup .filemanager__container {
+		width: 90%;
+		margin: var(--popup-margin-y) auto;
+	}
+.filemanager__close-popup{
+	position: absolute;
+	top: var(--popup-margin-y);
+	right: 5%;
+	transform: translate(50%, -50%);
+	background-color: rgba(255, 255, 255, 0.5);
+	color: crimson;
+	width: 30px;
+	height: 30px;
+	line-height:30px;
+	font-size: 30px;
+	border-radius: 10px;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 400;
+	user-select: none;
+	transition: 0.3s all;
+	z-index: 100;
+}
+	.filemanager__close-popup:hover {
+		background-color: rgba(227, 58, 58, 0.50);
+		color: white;
+	}
+
+	.filemanager__container * {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		color: #393939;
+	}
+
+.filemanager__container {
+	border-radius: 5px;
+	border: 1px solid gray;
+	box-shadow: 0 0 10px #80808058;
+	display: flex;
+	height: 500px;
+	background: white;
+	overflow: hidden;
+	position: relative;
+}
+
+	.filemanager__container > .filemanager__dir-tree {
+		width: var(--left-col-width);
+		height: 100%;
+		overflow: auto;
+		border-right: 1px solid gray;
+	}
+
+.filemanager__dir-tree > .dir-item {
+	padding: 5px;
+	border-bottom: 1px solid #eeeeee;
+	cursor: pointer;
+	user-select: none;
+}
+
+.filemanager__dir-tree .dir-icon {
+	width: 18pt;
+	padding-right: 5pt;
+}
+
+.filemanager__dir-tree > .dir-item:hover,
+.filemanager__dir-tree > .dir-item.selected {
+	background: #f5f5f5;
+}
+
+/*Cấu hình lùi dòng, tối đa 10 cấp*/
+.filemanager__dir-tree > .dir-item.dir-item-level-1 {
+	padding-left: calc(var(--dir-level-step) * 1) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-2 {
+	padding-left: calc(var(--dir-level-step) * 2) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-3 {
+	padding-left: calc(var(--dir-level-step) * 3) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-4 {
+	padding-left: calc(var(--dir-level-step) * 4) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-5 {
+	padding-left: calc(var(--dir-level-step) * 5) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-6 {
+	padding-left: calc(var(--dir-level-step) * 6) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-7 {
+	padding-left: calc(var(--dir-level-step) * 7) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-8 {
+	padding-left: calc(var(--dir-level-step) * 8) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-9 {
+	padding-left: calc(var(--dir-level-step) * 9) !important;
+}
+
+.filemanager__dir-tree > .dir-item.dir-item-level-10 {
+	padding-left: calc(var(--dir-level-step) * 10) !important;
+}
+
+.filemanager__panel {
+	width: calc(100% - var(--left-col-width));
+	height: 100%;
+}
+
+.filemanager__panel-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+	height: calc(100% - 62px);
+	overflow: auto;
+	align-content: flex-start;
+}
+
+	.filemanager__panel-container > .panel-item {
+		height: 150px;
+		width: 100px;
+		margin: 4px;
+		padding: 4px;
+		border: 1px solid transparent;
+		border-radius: 3px;
+		background-color: transparent;
+		cursor: pointer;
+		user-select: none;
+	}
+
+		.filemanager__panel-container > .panel-item:hover {
+			border-color: rgba(100, 148, 237, 0.4) !important;
+			background-color: rgba(100, 148, 237, 0.15) !important;
+		}
+
+		.filemanager__panel-container > .panel-item.selected {
+			border-color: rgba(100, 148, 237, 0.7) !important;
+			background-color: rgba(100, 148, 237, 0.4) !important;
+		}
+
+		.filemanager__panel-container > .panel-item > .panel-item__thumb {
+			height: 120px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+.panel-item > .panel-item__thumb > img {
+	object-fit: cover;
+	padding: 5px;
+}
+
+.filemanager__panel-container > .panel-item > .panel-item__filename {
+	margin-top: 5px;
+	font-size: small;
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.filemanager__panel .panel-toolbox {
+	padding: 5px 10px;
+	background-color: rgb(213, 227, 252, 0.2);
+	display: flex;
+}
+
+.filemanager__panel > .panel-bottom {
+	padding: 3px 10px;
+	background-color: #f3fbfb;
+	font-size: small;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.fbutton {
+	padding: 5px;
+	background-color: transparent;
+	border: 1px solid #3c4c84;
+	border-radius: 4px;
+	cursor: pointer;
+	min-width: 25px;
+}
+	.fbutton[disabled]{
+		opacity: 0.5;
+		cursor:not-allowed;
+	}
+	.fbutton.red {
+		color: white;
+		background-color: #f03939;
+		border: 1px solid #e02727;
+	}
+.filemanager__loader,
+.filemanager__modal {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 100;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+.filemanager__loader.show,
+.filemanager__modal.show{
+	display: flex;
+}
+
+.filemanager__modal-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: white;
+	border: 1px solid rgba(88, 104, 132, 0.70);
+	padding: 20px;
+	margin-top: -40px;
+	border-radius: 3px;
+	box-shadow: 0 0 10px rgba(100, 100, 100,0.3);
+	gap: 10px;
+}
+
+.spinner {
+	width: 75px;
+	height: 75px;
+	border: 5px solid cadetblue;
+	position: relative;
+	border-radius: 50%;
+	border-bottom-color: transparent;
+	animation: rotation 2s infinite;
+	animation-timing-function: linear;
+}
+	.spinner .filemanager__loader-box-mesg {
+		width: 70px;
+		height: 70px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border-radius: 50%;
+		background-color: rgb(211, 248, 255, 0.20);
+		transform: translate(-50%, -50%);
+		text-align: center;
+		line-height: 70px;
+		animation: center 2s infinite;
+		text-shadow: 1px 1px 2px white;
+		font-size: larger;
+		animation-timing-function: linear;
+	}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes center {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(-360deg);
+	}
+}
+
+.empty-folder {
+	font-size: 20pt;
+	margin: 20px auto;
+	text-align: center;
+	color: cadetblue;
+}
+
+.panel-toolbox .panel-toolbox__new-folder {
+	display: flex;
+}
+
+.panel-toolbox .panel-toolbox__upload-file {
+	position: relative;
+}
+
+	.panel-toolbox .panel-toolbox__upload-file input[type=file] {
+		opacity: 0;
+		width: 200px;
+		cursor: pointer;
+	}
+
+	.panel-toolbox .panel-toolbox__upload-file label {
+		position: absolute;
+		padding: 5px 10px;
+		font-size: small;
+		background-color: transparent;
+		border: 1px solid #3c4c84;
+		border-radius: 4px;
+		cursor: pointer;
+		width: 200px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		top: 0;
+		left: 0;
+		user-select: none;
+	}
+
+.ml-1 {
+	margin-left: 5px;
+}
+
+.ml-2 {
+	margin-left: 10px;
+}
+
+.ml-3 {
+	margin-left: 15px;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.finput-text {
+	padding: 5px 10px;
+	border: 1px solid #3c4c84;
+	border-radius: 4px;
+	outline: none;
+}
+
+	.finput-text:focus {
+		box-shadow: 0 0 0 1px rgba(100, 148, 237, 0.5);
+	}
+
+.fi::after{
+	content: ' [....] ';
+	color: transparent;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+.fi-folder-plus::after {
+	background-image: url('icon/folder-plus-solid.svg');
+}
+.fi-file-upload::after{
+	background-image: url('icon/file-upload-solid.svg');
+}
+.fi-sync::after {
+	background-image: url('icon/sync-solid.svg');
+}
+.fi-trash::after {
+	background-image: url('icon/trash-alt-solid.svg');
+}
+.fi-download::after {
+	background-image: url('icon/download-solid.svg');
+}
+.fi-rename::after {
+	background-image: url('icon/pen-to-square-solid.svg');
+}
